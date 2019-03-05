@@ -1,10 +1,11 @@
 package Singleton;
 
 import Boites.Fenetre;
+import Boites.Panneau;
 import Displayer.Displayer;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
 
 /**
  * Singleton Rebond. Partie du programme qui contient la fenêtre
@@ -17,12 +18,27 @@ public class Rebond implements Displayer {
     private final int HAUTEUR_DEFAUT = 800;
     private final int LARGEUR_DEFAUT = 600;
 
-    private Fenetre fenetre = new Fenetre(HAUTEUR_DEFAUT, LARGEUR_DEFAUT);
+    private Fenetre fenetre;
+    private Panneau panneau;
+    private BufferedImage bi;
 
     /**
      * Constructeur privé du Singleton
      */
-    private Rebond () {}
+    private Rebond () {
+        fenetre = new Fenetre(HAUTEUR_DEFAUT, LARGEUR_DEFAUT);
+        panneau = new Panneau(HAUTEUR_DEFAUT, LARGEUR_DEFAUT);
+
+        fenetre.setContentPane(panneau); // On associe notre panneau à la fenêtre
+
+        fenetre.pack(); // Taille de la fenêtre définie par rapport à son panneau
+        fenetre.setVisible(true); //Visibilité, important de le faire en dernier
+
+        bi = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+
+        Graphics2D g2d = bi.createGraphics();
+        g2d.drawImage(bi,null,getWidth(),getHeight());
+    }
 
     //
 
@@ -50,13 +66,13 @@ public class Rebond implements Displayer {
     @Override
     public Graphics2D getGraphics() {
 
-
-        return (Graphics2D) fenetre.getPanneau().getGraphics();
+        return bi.createGraphics();
     }
 
     @Override
     public void repaint() {
-        fenetre.repaint();
+        panneau.getGraphics().drawImage(bi, 0,0, null);
+        bi = (BufferedImage) panneau.createImage(getWidth(),getHeight());
     }
 
     @Override

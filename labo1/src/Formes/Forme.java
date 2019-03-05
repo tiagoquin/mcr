@@ -25,8 +25,8 @@ public abstract class Forme {
         y = alea.nextInt(borneHauteur) + largeur;
 
         //vitesse
-        dx = 1;//3 * (alea.nextBoolean() ? -1 : 1);
-        dy = 1;//3 * (alea.nextBoolean() ? -1 : 1);
+        dx = 3 * (alea.nextBoolean() ? -1 : 1);
+        dy = 3 * (alea.nextBoolean() ? -1 : 1);
     }
 
     public void translation () {
@@ -42,7 +42,7 @@ public abstract class Forme {
         }
 
 
-        if (y + dy < 0 || y + dy + largeur > Rebond.getInstance().getHeight()) {
+        if (y + dy < 0 || y + dy + 2 * largeur> Rebond.getInstance().getHeight()) {
             dy *= -1;
         }
     }

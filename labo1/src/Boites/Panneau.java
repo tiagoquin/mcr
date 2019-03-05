@@ -2,25 +2,30 @@ package Boites;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Panneau extends JPanel {
 
     public Panneau(int largPrefere, int hautPrefere) {
 
-        this.setPreferredSize(new Dimension(largPrefere, hautPrefere));
+        setPreferredSize(new Dimension(largPrefere, hautPrefere));
 
-        this.setBackground(Color.WHITE);
+        setSize(new Dimension(largPrefere, hautPrefere));
+
+        setBackground(Color.WHITE);
+
+        // Création d'une image
+        creerImage();
+
+    }
+
+    private void creerImage () {
+
     }
 
     @Override
     protected void paintComponent(Graphics g) {
 
         super.paintComponent(g); //Obligatoire au début
-
-        g.setColor(Color.blue);
-        g.fillRect(5,5,10,10);
-
     }
 
 }
