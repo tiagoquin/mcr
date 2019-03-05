@@ -6,7 +6,7 @@ import Singleton.Rebond;
 import java.util.LinkedList;
 
 /**
- * Point d'entrée de l'application
+ * Classe de point d'entrée dans l'application
  */
 public class LaboRebonds {
 
@@ -22,7 +22,7 @@ public class LaboRebonds {
     }
 
     /**
-     *
+     * Ajoute à une liste nos formes
      */
     public void ajouteForme () {
         for (int i = 0; i < 50; ++i) {
@@ -32,6 +32,10 @@ public class LaboRebonds {
     }
 
 
+    /**
+     * Contrôle le rafraichissement de la fenêtre et des formes.
+     * @throws InterruptedException Peut lever cette exception à cause du synchronized
+     */
     public synchronized void boucle() throws InterruptedException {
 
         while (true) {
@@ -44,10 +48,7 @@ public class LaboRebonds {
             }
 
             Thread.sleep(20);
-
         }
-
-
     }
 
     public static void main (String[] args) {

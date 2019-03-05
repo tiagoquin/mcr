@@ -2,7 +2,8 @@ package Formes;
 
 import Singleton.Rebond;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.util.Random;
 
 public abstract class Forme {

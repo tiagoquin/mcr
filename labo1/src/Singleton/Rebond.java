@@ -4,8 +4,8 @@ import Boites.Fenetre;
 import Boites.Panneau;
 import Displayer.Displayer;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
 
 /**
  * Singleton Rebond. Partie du programme qui contient la fenêtre
