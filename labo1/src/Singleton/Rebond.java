@@ -1,20 +1,23 @@
 package Singleton;
 
 import Boites.Fenetre;
-import Boites.Panneau;
 import Displayer.Displayer;
 
-import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
+/**
+ * Singleton Rebond. Partie du programme qui contient la fenêtre
+ * et qui implémente l'interface fournie Displayer
+ */
 public class Rebond implements Displayer {
 
-    private int hauteur = 800;
-    private int largeur = 600;
     private static Rebond instance;
 
-    private Fenetre fenetre = new Fenetre(hauteur, largeur);
-    private Panneau panneau;
+    private final int HAUTEUR_DEFAUT = 800;
+    private final int LARGEUR_DEFAUT = 600;
+
+    private Fenetre fenetre = new Fenetre(HAUTEUR_DEFAUT, LARGEUR_DEFAUT);
 
     /**
      * Constructeur privé du Singleton
@@ -36,22 +39,24 @@ public class Rebond implements Displayer {
 
     @Override
     public int getWidth() {
-        return 1;
+        return fenetre.getWidth();
     }
 
     @Override
     public int getHeight() {
-        return 1;
+        return fenetre.getHeight();
     }
 
     @Override
     public Graphics2D getGraphics() {
-        return null;
+
+
+        return (Graphics2D) fenetre.getPanneau().getGraphics();
     }
 
     @Override
     public void repaint() {
-
+        fenetre.repaint();
     }
 
     @Override
