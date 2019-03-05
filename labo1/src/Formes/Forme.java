@@ -2,7 +2,7 @@ package Formes;
 
 import Singleton.Rebond;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.Random;
 
 public abstract class Forme {
@@ -11,6 +11,9 @@ public abstract class Forme {
     protected int dx, dy;
     protected int x, y;
 
+    protected Dimension coordonnee; // TODO: 2019-03-05  
+    protected Dimension vitesse; // TODO: 2019-03-05
+
     public Forme () {
 
         Random alea = new Random();
@@ -18,15 +21,15 @@ public abstract class Forme {
         largeur = 10 + alea.nextInt(20);
 
         // Coordonées de départ
-        int borneLageur = (Rebond.getInstance().getWidth() - 2 * largeur);
-        int borneHauteur = Rebond.getInstance().getHeight() - 2 * largeur;
+        int borneLargeur = Rebond.getInstance().getWidth() - largeur;
+        int borneHauteur = Rebond.getInstance().getHeight() - largeur - 20;
 
-        x = alea.nextInt(borneLageur) + largeur;
-        y = alea.nextInt(borneHauteur) + largeur;
+        x = alea.nextInt(borneLargeur);
+        y = alea.nextInt(borneHauteur);
 
         //vitesse
-        dx = 3 * (alea.nextBoolean() ? -1 : 1);
-        dy = 3 * (alea.nextBoolean() ? -1 : 1);
+        dx = 1 + alea.nextInt(6) * (alea.nextBoolean() ? -1 : 1);
+        dy = 1 + alea.nextInt(6) * (alea.nextBoolean() ? -1 : 1);
     }
 
     public void translation () {
@@ -42,7 +45,7 @@ public abstract class Forme {
         }
 
 
-        if (y + dy < 0 || y + dy + 2 * largeur> Rebond.getInstance().getHeight()) {
+        if (y + dy < 0 || y + dy + largeur> Rebond.getInstance().getHeight() - 20) {
             dy *= -1;
         }
     }

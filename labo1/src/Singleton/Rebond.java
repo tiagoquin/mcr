@@ -4,8 +4,8 @@ import Boites.Fenetre;
 import Boites.Panneau;
 import Displayer.Displayer;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
 
 /**
  * Singleton Rebond. Partie du programme qui contient la fenêtre
@@ -35,7 +35,6 @@ public class Rebond implements Displayer {
         fenetre.setVisible(true); //Visibilité, important de le faire en dernier
 
         bi = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
-
         Graphics2D g2d = bi.createGraphics();
         g2d.drawImage(bi,null,getWidth(),getHeight());
     }
@@ -66,12 +65,12 @@ public class Rebond implements Displayer {
     @Override
     public Graphics2D getGraphics() {
 
-        return bi.createGraphics();
+        return (Graphics2D) bi.getGraphics();
     }
 
     @Override
     public void repaint() {
-        panneau.getGraphics().drawImage(bi, 0,0, null);
+        panneau.getGraphics().drawImage(bi,0,0, null);
         bi = (BufferedImage) panneau.createImage(getWidth(),getHeight());
     }
 

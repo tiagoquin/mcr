@@ -25,7 +25,7 @@ public class LaboRebonds {
      *
      */
     public void ajouteForme () {
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 50; ++i) {
             formes.add(new Cercle());
             formes.add(new Carre());
         }
@@ -43,7 +43,7 @@ public class LaboRebonds {
                 f.translation();
             }
 
-            Thread.sleep(16);
+            Thread.sleep(20);
 
         }
 
