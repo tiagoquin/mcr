@@ -12,12 +12,12 @@ import java.util.TimerTask;
  */
 public class LaboRebonds extends TimerTask {
 
-    LinkedList<Forme> formes = new LinkedList<>();
+   private LinkedList<Forme> formes = new LinkedList<>();
 
     /**
      *
      */
-    public LaboRebonds () {
+    public LaboRebonds() {
         Rebond.getInstance().setTitle("Appli de rebonds");
 
         this.ajouteForme();
@@ -26,35 +26,18 @@ public class LaboRebonds extends TimerTask {
     /**
      * Ajoute à une liste nos formes
      */
-    public void ajouteForme () {
+    public void ajouteForme() {
         for (int i = 0; i < 50; ++i) {
             formes.add(new Cercle());
             formes.add(new Carre());
         }
     }
 
-
     /**
-     * Contrôle le rafraichissement de la fenêtre et des formes.
-     * @throws InterruptedException Peut lever cette exception à cause du synchronized
+     * l'appel a cette fonction peu être gérer via Timertask
      */
-/*    public synchronized void boucle() throws InterruptedException {
-
-        while (true) {
-
-            Rebond.getInstance().repaint();
-
-            for (Forme f : formes) {
-                f.dessine(Rebond.getInstance().getGraphics());
-                f.translation();
-            }
-
-            Thread.sleep(20);
-        }
-    }
-    */
     @Override
-    public void run(){
+    public void run() {
         Rebond.getInstance().repaint();
 
         for (Forme f : formes) {
@@ -63,10 +46,8 @@ public class LaboRebonds extends TimerTask {
         }
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Timer timer = new Timer();
-        timer.schedule(new LaboRebonds(),0,10);
-
+        timer.schedule(new LaboRebonds(), 0, 50);
     }
-
 }
