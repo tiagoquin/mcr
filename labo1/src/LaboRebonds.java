@@ -4,11 +4,13 @@ import Formes.Forme;
 import Singleton.Rebond;
 
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Classe de point d'entrée dans l'application
  */
-public class LaboRebonds {
+public class LaboRebonds extends TimerTask {
 
     LinkedList<Forme> formes = new LinkedList<>();
 
@@ -36,7 +38,7 @@ public class LaboRebonds {
      * Contrôle le rafraichissement de la fenêtre et des formes.
      * @throws InterruptedException Peut lever cette exception à cause du synchronized
      */
-    public synchronized void boucle() throws InterruptedException {
+/*    public synchronized void boucle() throws InterruptedException {
 
         while (true) {
 
@@ -50,13 +52,21 @@ public class LaboRebonds {
             Thread.sleep(20);
         }
     }
+    */
+    @Override
+    public void run(){
+        Rebond.getInstance().repaint();
+
+        for (Forme f : formes) {
+            f.dessine(Rebond.getInstance().getGraphics());
+            f.translation();
+        }
+    }
 
     public static void main (String[] args) {
-        try {
-            new LaboRebonds().boucle();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Timer timer = new Timer();
+        timer.schedule(new LaboRebonds(),0,10);
+
     }
 
 }
