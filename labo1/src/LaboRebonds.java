@@ -12,7 +12,7 @@ import java.util.TimerTask;
  */
 public class LaboRebonds extends TimerTask {
 
-    LinkedList<Forme> formes = new LinkedList<>();
+   private LinkedList<Forme> formes = new LinkedList<>();
 
     /**
      *
@@ -48,6 +48,6 @@ public class LaboRebonds extends TimerTask {
 
     public static void main(String[] args) {
         Timer timer = new Timer();
-        timer.schedule(new LaboRebonds(), 0, 10);
+        timer.schedule(new LaboRebonds(), 0, 50);
     }
 }

@@ -21,7 +21,7 @@ public abstract class Forme {
         //set de la valeur de correction selon l'os
         if (System.getProperty("os.name").equals("Windows")) {
             decalage = 40;
-        } else if (System.getProperty("os.name").equals("Windows")) {
+        } else if (System.getProperty("os.name").equals("Mac")) {
             decalage = 20;
         } else {
             decalage = 30;
@@ -60,8 +60,6 @@ public abstract class Forme {
         if (y + dy < 0 || y + dy + largeur > Rebond.getInstance().getHeight() - decalage) {
             dy *= -1;
         }
-
-
     }
 
     public abstract void dessine(Graphics g);

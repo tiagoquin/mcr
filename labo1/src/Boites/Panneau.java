@@ -5,11 +5,11 @@ import java.awt.Dimension;
 
 public class Panneau extends JPanel {
 
-    public Panneau(int largPrefere, int hautPrefere) {
+    public Panneau(Dimension dimension) {
 
-        setPreferredSize(new Dimension(largPrefere, hautPrefere));
+        setPreferredSize(dimension);
 
-        setSize(new Dimension(largPrefere, hautPrefere));
+        setSize(dimension);
 
     }
 }

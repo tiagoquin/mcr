@@ -4,8 +4,8 @@ import Boites.Fenetre;
 import Boites.Panneau;
 import Displayer.Displayer;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
 
 /**
  * Singleton Rebond. Partie du programme qui contient la fenêtre
@@ -15,8 +15,7 @@ public class Rebond implements Displayer {
 
     private static Rebond instance;
 
-    private final int HAUTEUR_DEFAUT = 800;
-    private final int LARGEUR_DEFAUT = 600;
+    private static final Dimension DIMENSION = new Dimension(800,600);
 
     private Fenetre fenetre;
     private Panneau panneau;
@@ -26,8 +25,8 @@ public class Rebond implements Displayer {
      * Constructeur privé du Singleton
      */
     private Rebond () {
-        fenetre = new Fenetre(HAUTEUR_DEFAUT, LARGEUR_DEFAUT);
-        panneau = new Panneau(HAUTEUR_DEFAUT, LARGEUR_DEFAUT);
+        fenetre = new Fenetre(DIMENSION);
+        panneau = new Panneau(DIMENSION);
 
         fenetre.setContentPane(panneau); // On associe notre panneau à la fenêtre
 
