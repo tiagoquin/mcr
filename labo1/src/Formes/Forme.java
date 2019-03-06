@@ -11,11 +11,24 @@ public abstract class Forme {
     protected int largeur;
     protected int dx, dy;
     protected int x, y;
+    //correction bas de fenetre selon system
+    static protected int decalage;
 
     protected Dimension coordonnee; // TODO: 2019-03-05  
     protected Dimension vitesse; // TODO: 2019-03-05
 
-    public Forme () {
+    {
+        //set de la valeur de correction selon l'os
+        if (System.getProperty("os.name").equals("Windows")) {
+            decalage = 40;
+        } else if (System.getProperty("os.name").equals("Windows")) {
+            decalage = 20;
+        } else {
+            decalage = 30;
+        }
+    }
+
+    public Forme() {
 
         Random alea = new Random();
 
@@ -33,24 +46,24 @@ public abstract class Forme {
         dy = 1 + alea.nextInt(6) * (alea.nextBoolean() ? -1 : 1);
     }
 
-    public void translation () {
+    public void translation() {
         testLimites();
         x += dx;
         y += dy;
     }
 
-    private void testLimites () {
-
+    private void testLimites() {
         if (x + dx < 0 || x + dx + largeur > Rebond.getInstance().getWidth()) {
             dx *= -1;
         }
 
-
-        if (y + dy < 0 || y + dy + largeur> Rebond.getInstance().getHeight() - 20) {
+        if (y + dy < 0 || y + dy + largeur > Rebond.getInstance().getHeight() - decalage) {
             dy *= -1;
         }
+
+
     }
 
-    public abstract void dessine (Graphics g);
+    public abstract void dessine(Graphics g);
 
 }
