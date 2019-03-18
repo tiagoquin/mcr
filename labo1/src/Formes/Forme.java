@@ -82,6 +82,11 @@ public abstract class Forme  implements Bouncable {
     // TODO: 2019-03-14 remove ça
     //public abstract void draw(Graphics g);
 
+
+    public void draw() {
+        getRenderer().display(Rebond.getInstance().getGraphics(), this);
+    }
+
     @Override
     public Renderable getRenderer() {
         return renderable;

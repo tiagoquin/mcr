@@ -17,11 +17,6 @@ public class CercleVide extends Forme {
     }
 
     @Override
-    public void draw() {
-        getRenderer().display(Rebond.getInstance().getGraphics(), this);
-    }
-
-    @Override
     public Shape getShape() {
         return new Ellipse2D.Double (this.x, this.y, this.largeur, this.largeur);
     }
