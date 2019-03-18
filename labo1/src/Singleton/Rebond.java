@@ -5,6 +5,7 @@ import Boites.Panneau;
 import Displayer.Displayer;
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.image.BufferedImage;
 
 /**
@@ -51,6 +52,10 @@ public class Rebond implements Displayer {
         return instance;
     }
 
+    public int decalage() {
+        return fenetre.getHeight() - panneau.getHeight();
+    }
+
     @Override
     public int getWidth() {
         return fenetre.getWidth();
@@ -76,5 +81,10 @@ public class Rebond implements Displayer {
     @Override
     public void setTitle(String s) {
         fenetre.setTitle(s);
+    }
+
+    @Override
+    public void addKeyListener(KeyAdapter ka) {
+
     }
 }

@@ -2,9 +2,9 @@ package Formes;
 
 import java.awt.*;
 
-public class Carre extends Forme {
+public class CarrePlein extends Forme {
 
-    public void dessine (Graphics g) {
+    public void draw(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
 
