@@ -6,7 +6,7 @@ import Singleton.Rebond;
 import java.awt.*;
 import java.util.Random;
 
-public abstract class Forme  implements Bouncable {
+public abstract class Forme implements Bouncable {
 
     protected Renderable renderable;
     protected Color color;
@@ -20,18 +20,6 @@ public abstract class Forme  implements Bouncable {
 
     protected Dimension coordonnee; // TODO: 2019-03-05  
     protected Dimension vitesse; // TODO: 2019-03-05
-
-    // TODO: 2019-03-14 À remove
-//    {
-//        //set de la valeur de correction selon l'os
-//        if (System.getProperty("os.name").equals("Windows")) {
-//            decalage = 40;
-//        } else if (System.getProperty("os.name").equals("Mac OS X")) {
-//            decalage = 20;
-//        } else {
-//            decalage = 30;
-//        }
-//    }
 
     public Forme() {
 
@@ -78,10 +66,6 @@ public abstract class Forme  implements Bouncable {
             dy *= -1;
         }
     }
-
-    // TODO: 2019-03-14 remove ça
-    //public abstract void draw(Graphics g);
-
 
     public void draw() {
         getRenderer().display(Rebond.getInstance().getGraphics(), this);
