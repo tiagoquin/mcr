@@ -1,7 +1,7 @@
 package Fabrique;
 
-import Formes.CarrePlein;
-import Formes.CerclePlein;
+import Formes.Plein.CarrePlein;
+import Formes.Plein.CerclePlein;
 
 public class FabriqueFormePlein extends FabriqueForme {
 

@@ -2,7 +2,6 @@ package Singleton;
 
 import Boites.Fenetre;
 import Boites.Panneau;
-import Displayer.Displayer;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;

@@ -1,11 +1,12 @@
 package Fabrique;
 
-import Formes.CarrePlein;
-import Formes.CerclePlein;
+import Formes.Bouncable;
+import Formes.Plein.CarrePlein;
+import Formes.Plein.CerclePlein;
 
 public abstract class FabriqueForme {
 
-    public abstract CarrePlein creerCarre();
+    public abstract Bouncable creerCarre();
 
-    public abstract CerclePlein creerCercle();
+    public abstract Bouncable creerCercle();
 }

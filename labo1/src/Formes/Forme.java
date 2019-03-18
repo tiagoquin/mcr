@@ -1,7 +1,6 @@
 package Formes;
 
-import Displayer.Bouncable;
-import Renderable.Renderable;
+import Formes.Renderable.Renderable;
 import Singleton.Rebond;
 
 import java.awt.*;
@@ -9,7 +8,7 @@ import java.util.Random;
 
 public abstract class Forme  implements Bouncable {
 
-    private Renderable renderable;
+    protected Renderable renderable;
     protected Color color;
     protected Shape shape;
 

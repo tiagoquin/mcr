@@ -1,4 +1,5 @@
-import Displayer.Bouncable;
+import Fabrique.FabriqueFormeVide;
+import Formes.Bouncable;
 import Fabrique.FabriqueForme;
 import Fabrique.FabriqueFormePlein;
 import Formes.Forme;
@@ -11,9 +12,7 @@ import java.util.LinkedList;
  */
 public class BounceApp {
 
-    // TODO: 2019-03-13
     private LinkedList<Bouncable> bouncers = new LinkedList<>();
-    private LinkedList<Forme> formes = new LinkedList<>();
 
     /**
      *
@@ -29,11 +28,14 @@ public class BounceApp {
      */
     public void ajouteForme() {
 
-        FabriqueForme ff = new FabriqueFormePlein();
+        FabriqueForme fabriquePlein = new FabriqueFormePlein();
+        FabriqueForme fabriqueVide = new FabriqueFormeVide();
 
-        for (int i = 0; i < 50; ++i) {
-            formes.add(ff.creerCarre());
-            formes.add(ff.creerCercle());
+        for (int i = 0; i < 10; ++i) {
+            bouncers.add(fabriquePlein.creerCarre());
+            bouncers.add(fabriquePlein.creerCercle());
+            bouncers.add(fabriqueVide.creerCarre());
+            bouncers.add(fabriqueVide.creerCercle());
         }
     }
 
@@ -43,20 +45,16 @@ public class BounceApp {
 
             Rebond.getInstance().repaint();
 
-            for (Forme f : formes) {
-                f.draw(Rebond.getInstance().getGraphics());
-                f.translation();
+            for (Bouncable f : bouncers) {
+                f.draw();
+                f.move();
             }
 
             Thread.sleep(16);
         }
     }
 
-    public static void main(String[] args) {
-        try {
-            new BounceApp().loop();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws InterruptedException {
+        new BounceApp().loop();
     }
 }

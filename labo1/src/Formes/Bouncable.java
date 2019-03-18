@@ -1,6 +1,6 @@
-package Displayer;
+package Formes;
 
-import Renderable.Renderable;
+import Formes.Renderable.Renderable;
 
 import java.awt.*;
 

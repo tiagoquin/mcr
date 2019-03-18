@@ -1,6 +1,6 @@
-package Renderable;
+package Formes.Renderable;
 
-import Displayer.Bouncable;
+import Formes.Bouncable;
 
 import java.awt.*;
 
