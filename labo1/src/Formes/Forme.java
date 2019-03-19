@@ -1,32 +1,25 @@
 package Formes;
 
+import Formes.Renderable.Renderable;
 import Singleton.Rebond;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.Random;
 
-public abstract class Forme {
+public abstract class Forme implements Bouncable {
+
+    protected Renderable renderable;
+    protected Color color;
+    protected Shape shape;
 
     protected int largeur;
     protected int dx, dy;
     protected int x, y;
-    //correction bas de fenetre selon system
-    static protected int decalage;
+
+    static protected int decalage;     //correction bas de fenetre
 
     protected Dimension coordonnee; // TODO: 2019-03-05  
     protected Dimension vitesse; // TODO: 2019-03-05
-
-    {
-        //set de la valeur de correction selon l'os
-        if (System.getProperty("os.name").equals("Windows")) {
-            decalage = 40;
-        } else if (System.getProperty("os.name").equals("Mac")) {
-            decalage = 20;
-        } else {
-            decalage = 30;
-        }
-    }
 
     public Forme() {
 
@@ -36,7 +29,7 @@ public abstract class Forme {
 
         // Coordonées de départ
         int borneLargeur = Rebond.getInstance().getWidth() - largeur;
-        int borneHauteur = Rebond.getInstance().getHeight() - largeur - 20;
+        int borneHauteur = Rebond.getInstance().getHeight() - largeur - Rebond.getInstance().decalage();
 
         x = alea.nextInt(borneLargeur);
         y = alea.nextInt(borneHauteur);
@@ -46,22 +39,50 @@ public abstract class Forme {
         dy = 1 + alea.nextInt(6) * (alea.nextBoolean() ? -1 : 1);
     }
 
-    public void translation() {
+    @Override
+    public void move() {
         testLimites();
         x += dx;
         y += dy;
     }
 
     private void testLimites() {
-        if (x + dx < 0 || x + dx + largeur > Rebond.getInstance().getWidth()) {
+
+        if (x + dx < 0) {
             dx *= -1;
         }
 
-        if (y + dy < 0 || y + dy + largeur > Rebond.getInstance().getHeight() - decalage) {
+        if (x + dx + largeur > Rebond.getInstance().getWidth()) {
+            x = Rebond.getInstance().getWidth() - largeur;
+            dx *= -1;
+        }
+
+        if (y + dy < 0) {
+            dy *= -1;
+        }
+
+        if (y + dy + largeur > Rebond.getInstance().getHeight() - Rebond.getInstance().decalage()) {
+            y = Rebond.getInstance().getHeight() - largeur - Rebond.getInstance().decalage();
             dy *= -1;
         }
     }
 
-    public abstract void dessine(Graphics g);
+    public void draw() {
+        getRenderer().display(Rebond.getInstance().getGraphics(), this);
+    }
 
+    @Override
+    public Renderable getRenderer() {
+        return renderable;
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public Shape getShape() {
+        return shape;
+    }
 }
