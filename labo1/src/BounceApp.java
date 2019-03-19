@@ -18,7 +18,6 @@ public class BounceApp {
     private LinkedList<Bouncable> bouncers = new LinkedList<>();
     private FabriqueForme fabriquePlein = new FabriqueFormePlein();
     private FabriqueForme fabriqueVide = new FabriqueFormeVide();
-    int nombreFabriquerParPression = 10;
 
     /**
      *
@@ -48,7 +47,8 @@ public class BounceApp {
     }
 
     private void addforme(FabriqueForme fabriqueForme) {
-        for (int i =0; i < nombreFabriquerParPression ;i++) {
+        int nombreFabriquerParPression = 10;
+        for (int i = 0; i < nombreFabriquerParPression; i++) {
             bouncers.add(fabriqueForme.creerCercle());
             bouncers.add(fabriqueForme.creerCarre());
         }
@@ -61,7 +61,8 @@ public class BounceApp {
         while (true) {
 
             Rebond.getInstance().repaint();
-            try {
+            try { //n.b: ce try catch est inutile si on Utilise un Timer pour dessiner les forme mais la donner ne nous
+                //le permet pas on pourrait aussi utiliser autre chose que Keypressed
                 for (Bouncable f : bouncers) {
                     f.draw();
                     f.move();
@@ -69,8 +70,9 @@ public class BounceApp {
             } catch (ConcurrentModificationException e) {
                 //ce try catch permet de regler des problèmes d'accès concurentiel provoquer par des appels succèsif
                 //du for each
+            } catch (NullPointerException e){
+                //regle les probleme lorsqu'on clear et qu
             }
-
 
             Thread.sleep(16);
         }

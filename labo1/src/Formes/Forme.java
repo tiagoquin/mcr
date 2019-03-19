@@ -16,10 +16,6 @@ public abstract class Forme implements Bouncable {
     protected int dx, dy;
     protected int x, y;
 
-    static protected int decalage;     //correction bas de fenetre
-
-    protected Dimension coordonnee; // TODO: 2019-03-05  
-    protected Dimension vitesse; // TODO: 2019-03-05
 
     public Forme() {
 
