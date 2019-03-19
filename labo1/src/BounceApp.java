@@ -18,6 +18,7 @@ public class BounceApp {
     private LinkedList<Bouncable> bouncers = new LinkedList<>();
     private FabriqueForme fabriquePlein = new FabriqueFormePlein();
     private FabriqueForme fabriqueVide = new FabriqueFormeVide();
+    int nombreFabriquerParPression = 10;
 
     /**
      *
@@ -47,9 +48,10 @@ public class BounceApp {
     }
 
     private void addforme(FabriqueForme fabriqueForme) {
-
-        bouncers.add(fabriqueForme.creerCercle());
-        bouncers.add(fabriqueForme.creerCarre());
+        for (int i =0; i < nombreFabriquerParPression ;i++) {
+            bouncers.add(fabriqueForme.creerCercle());
+            bouncers.add(fabriqueForme.creerCarre());
+        }
 
     }
 
