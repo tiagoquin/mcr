@@ -84,6 +84,6 @@ public class Rebond implements Displayer {
 
     @Override
     public void addKeyListener(KeyAdapter ka) {
-
+        fenetre.addKeyListener(ka);
     }
 }
