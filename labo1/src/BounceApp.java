@@ -7,6 +7,7 @@ import Singleton.Rebond;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 
 /**
@@ -27,54 +28,47 @@ public class BounceApp {
             @Override
             public void keyPressed(KeyEvent e) {
                 char c = e.getKeyChar();
-
-               switch (c){
-                   case 'e':
-                       bouncers.clear();
-                       break;
-                   case 'b':
-                       bouncers.add(fabriqueVide.creerCercle());
-                       bouncers.add(fabriqueVide.creerCarre());
-                       break;
-                   case 'f':
-                       bouncers.add(fabriquePlein.creerCarre());
-                       bouncers.add(fabriquePlein.creerCercle());
-                       break;
-                   case 'q':
-                       System.exit(0);
-               }
+                switch (c) {
+                    case 'e':
+                        bouncers.clear();
+                        break;
+                    case 'b':
+                        addforme(fabriqueVide);
+                        break;
+                    case 'f':
+                        addforme(fabriquePlein);
+                        break;
+                    case 'q':
+                        System.exit(0);
+                }
 
             }
         });
-
-        this.ajouteForme();
     }
 
-    /**
-     * Ajoute à une liste nos formes
-     */
-    public void ajouteForme() {
+    private void addforme(FabriqueForme fabriqueForme) {
 
+        bouncers.add(fabriqueForme.creerCercle());
+        bouncers.add(fabriqueForme.creerCarre());
 
-
-        for (int i = 0; i < 10; ++i) {
-            bouncers.add(fabriquePlein.creerCarre());
-            bouncers.add(fabriquePlein.creerCercle());
-            bouncers.add(fabriqueVide.creerCarre());
-            bouncers.add(fabriqueVide.creerCercle());
-        }
     }
+
 
     public synchronized void loop() throws InterruptedException {
 
         while (true) {
 
             Rebond.getInstance().repaint();
-
-            for (Bouncable f : bouncers) {
-                f.draw();
-                f.move();
+            try {
+                for (Bouncable f : bouncers) {
+                    f.draw();
+                    f.move();
+                }
+            } catch (ConcurrentModificationException e) {
+                //ce try catch permet de regler des problèmes d'accès concurentiel provoquer par des appels succèsif
+                //du for each
             }
+
 
             Thread.sleep(16);
         }
