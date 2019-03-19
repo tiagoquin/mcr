@@ -10,11 +10,11 @@ public abstract class Forme implements Bouncable {
 
     protected Renderable renderable;
     protected Color color;
-    protected Shape shape;
 
     protected int largeur;
     protected int dx, dy;
     protected int x, y;
+    protected Shape shape;
 
 
     public Forme() {
@@ -40,6 +40,7 @@ public abstract class Forme implements Bouncable {
         testLimites();
         x += dx;
         y += dy;
+
     }
 
     private void testLimites() {
@@ -79,6 +80,8 @@ public abstract class Forme implements Bouncable {
 
     @Override
     public Shape getShape() {
-        return shape;
+        return this.shape;
     }
+
+
 }
