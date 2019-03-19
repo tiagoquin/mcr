@@ -5,6 +5,8 @@ import Fabrique.FabriqueFormePlein;
 import Formes.Forme;
 import Singleton.Rebond;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 /**
@@ -13,12 +15,37 @@ import java.util.LinkedList;
 public class BounceApp {
 
     private LinkedList<Bouncable> bouncers = new LinkedList<>();
+    private FabriqueForme fabriquePlein = new FabriqueFormePlein();
+    private FabriqueForme fabriqueVide = new FabriqueFormeVide();
 
     /**
      *
      */
     public BounceApp() {
         Rebond.getInstance().setTitle("Appli de rebonds");
+        Rebond.getInstance().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                char c = e.getKeyChar();
+
+               switch (c){
+                   case 'e':
+                       bouncers.clear();
+                       break;
+                   case 'b':
+                       bouncers.add(fabriqueVide.creerCercle());
+                       bouncers.add(fabriqueVide.creerCarre());
+                       break;
+                   case 'f':
+                       bouncers.add(fabriquePlein.creerCarre());
+                       bouncers.add(fabriquePlein.creerCercle());
+                       break;
+                   case 'q':
+                       System.exit(0);
+               }
+
+            }
+        });
 
         this.ajouteForme();
     }
@@ -28,8 +55,7 @@ public class BounceApp {
      */
     public void ajouteForme() {
 
-        FabriqueForme fabriquePlein = new FabriqueFormePlein();
-        FabriqueForme fabriqueVide = new FabriqueFormeVide();
+
 
         for (int i = 0; i < 10; ++i) {
             bouncers.add(fabriquePlein.creerCarre());
